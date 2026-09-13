@@ -14,8 +14,15 @@ done
 
 echo "▸ Setting up config..."
 mkdir -p "${CFG}"
-# Use current repo dir as source
 cp -r ./* "${CFG}/"
+
+# Proactive dependency install
+if ! command -v rg >/dev/null 2>&1 || ! command -v fd >/dev/null 2>&1; then
+  echo "▸ Attempting to install missing deps (rg/fd)..."
+  if command -v apt >/dev/null 2>&1; then
+    sudo apt update && sudo apt install -y ripgrep fd-find
+  fi
+fi
 
 echo "▸ Installing plugins..."
 nvim --headless "+Lazy sync" +qall
