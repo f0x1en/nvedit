@@ -14,14 +14,19 @@ done
 
 echo "▸ Setting up config..."
 mkdir -p "${CFG}"
-cp -r ./* "${CFG}/"
 
-# Proactive dependency install
+# Clean existing config just in case
+rm -rf "${CFG:?}/*"
+
+# Copy necessary files
+cp -r lua "${CFG}/"
+cp init.lua lazy-lock.json "${CFG}/"
+
+# Proactive dependency install (non-interactive)
 if ! command -v rg >/dev/null 2>&1 || ! command -v fd >/dev/null 2>&1; then
-  echo "▸ Attempting to install missing deps (rg/fd)..."
-  if command -v apt >/dev/null 2>&1; then
-    sudo apt update && sudo apt install -y ripgrep fd-find
-  fi
+  echo "▸ Warning: ripgrep/fd not found. Install for better experience:"
+  echo "  apt: sudo apt install ripgrep fd-find"
+  echo "  dnf: sudo dnf install ripgrep fd-find"
 fi
 
 echo "▸ Installing plugins..."

@@ -1,32 +1,32 @@
-local lazy_config = require(\"configs.lazy\")
+local lazy_config = require("configs.lazy")
 
 -- bootstrap lazy.nvim all plugins
-local lazypath = vim.fn.stdpath(\"data\") .. \"/lazy/lazy.nvim\"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
-  local repo = \"https://github.com/folke/lazy.nvim.git\"
-  vim.fn.system({ \"git\", \"clone\", \"--filter=blob:none\", repo, \"--branch=stable\", lazypath })
+  local repo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system({"git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath})
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- load plugins
-require(\"lazy\").setup({
+require("lazy").setup({
   {
-    \"NvChad/NvChad\",
+    "NvChad/NvChad",
     lazy = false,
-    branch = \"v2.5\",
-    import = \"nvchad.plugins\",
+    branch = "v2.5",
+    import = "nvchad.plugins",
   },
 
-  { import = \"plugins\" },
+  { import = "plugins" },
 }, lazy_config)
 
 -- load theme
-dofile(vim.g.base46_cache .. \"defaults\")
-dofile(vim.g.base46_cache .. \"statusline\")
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
 
-require(\"options\")
-require(\"autocmds\")
+require("options")
+require("autocmds")
 
 vim.schedule(function()
-  require(\"mappings\")
+  require("mappings")
 end)
