@@ -59,3 +59,8 @@ Important headless command (for follow-up testing):
 
 4) If you want to extend features later:
    - add plugins only when they earn it (images are on hold).
+
+## Ongoing Improvements (Automated)
+- Proactively improve installer for automatic / deps.
+- Add  for post-install validation.
+- Continue monitoring repo for issues.
