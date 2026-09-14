@@ -1,0 +1,8 @@
+*.swp
+*.swo
+*.log
+*.bak
+*.tmp
+.session
+.lazy/
+nvim/

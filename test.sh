@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# nvedit test script - verify installation
+# nvedit smoke test — validates headless nvim + lazy.nvim
 echo "▸ Testing nvim load..."
 nvim --headless +qall
-
 if [ $? -eq 0 ]; then
   echo "✔ Nvim loads successfully."
 else
@@ -14,7 +13,6 @@ fi
 
 echo "▸ Testing lazy.nvim..."
 nvim --headless "+Lazy check" +qall
-
 if [ $? -eq 0 ]; then
   echo "✔ Lazy.nvim check passed."
 else
